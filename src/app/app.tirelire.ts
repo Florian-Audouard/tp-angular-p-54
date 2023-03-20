@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 
 @Component({
@@ -8,17 +8,16 @@ import { Component, ElementRef } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-
+//(click)="depenser()"
 export class Tirelire {
 
-    num = 0
-    incre(){
-        this.num += 100
-    }
-    depenser(){
-        this.num =0
-    }
+    @Input() num!:number;
+    @Output() change: EventEmitter<number> = new EventEmitter<number>();
     
+    depenser(){
+        this.num = 0
+        this.change.emit(this.num)
+    }
     
 
 }
